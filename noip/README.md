@@ -2,6 +2,13 @@
 ```
 docker run -d -e NOIP_USERNAME=username -e NOIP_PASSWORD=passowrd -e NOIP_HOSTNAME=hostname yanzhen0610/noip
 ```
+
+or with specified period
+
+```
+docker run -d -e NOIP_USERNAME=username -e NOIP_PASSWORD=passowrd -e NOIP_HOSTNAME=hostname -e PERIOD=10 yanzhen0610/noip
+```
+
 # Environment Variables
  - `NOIP_USERNAME` (required) for username
  - `NOIP_PASSWORD` (required) for password
