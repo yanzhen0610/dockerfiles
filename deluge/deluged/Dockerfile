@@ -8,7 +8,7 @@ RUN apt-get update \
       && apt-get install -y deluged deluge-console \
       && ${DELUGED_DIR}/build-setup.sh \
       && rm -f ${DELUGED_DIR}/build-setup.sh \
-      && mkdir -p ${DELUGED_DIR}/Downloads ${DELUGED_DIR}/config/state \
+      && mkdir -p ${DELUGED_DIR}/Downloads ${DELUGED_DIR}/plugins ${DELUGED_DIR}/config/state \
       && chown -R debian-deluged:debian-deluged ${DELUGED_DIR} \
       && apt clean \
       && rm -fr /var/lib/apt/lists/*
