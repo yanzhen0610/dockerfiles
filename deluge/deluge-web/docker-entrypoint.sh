@@ -4,7 +4,7 @@ random_40c() {
     tr -cd 'a-z0-9' < /dev/urandom | fold -w40 | head -n1
 }
 
-INIT_FILE=INITFILE
+INIT_FILE=INIT_FILE
 
 if [ ! -e "$INIT_FILE" ]
 then
@@ -19,4 +19,4 @@ then
     touch $INIT_FILE
 fi
 
-/usr/bin/deluge-web -c ${DELUGE_WEB_DIR} -L ${DELUGE_WEB_LOG_LEVEL:-info}
+exec "$@"
