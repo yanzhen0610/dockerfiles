@@ -18,4 +18,4 @@ then
     touch "$FIRST_RUN_MARK_FILE"
 fi
 
-/usr/bin/deluged -d -c /var/lib/deluged/config
+/usr/bin/deluged -d -c $DELUGED_DIR/config -L ${DELUGED_LOG_LEVEL:-info}
