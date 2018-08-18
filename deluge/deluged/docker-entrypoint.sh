@@ -1,8 +1,9 @@
 #!/bin/bash
 
-FIRST_RUN_MARK_FILE=FIRST_RUN_MARK_FILE
+INIT_FILE=INIT_FILE
+USER_FILE=USER_FILE
 
-add_user() {
+add_client_access_user() {
     local username="$1"
     local password="$2"
     local level="${3:-10}"
@@ -12,10 +13,30 @@ add_user() {
     fi
 }
 
-if [ ! -e "$FIRST_RUN_MARK_FILE" ]
+if [ ! -e "$INIT_FILE" ]
 then
-    add_user "$DELUGED_CLIENT_USERNAME" "$DELUGED_CLIENT_PASSWORD"
-    touch "$FIRST_RUN_MARK_FILE"
+    cd $DELUGED_DIR
+    add_client_access_user "$DELUGED_CLIENT_USERNAME" "$DELUGED_CLIENT_PASSWORD"
+
+    if [ ! -z "$DELUGED_UID" ]
+    then
+        uid=$(id -u $DELUGED_UID 2>/dev/null)
+        if [ $? -ne 0 ]
+        then
+            usermod -u $DELUGED_UID $DELUGED_USER
+            echo change $DELUGED_USER\'s UID to $DELUGED_UID
+        else
+            DELUGED_USER=$(getent passwd $DELUGED_UID | egrep -o '^[^:]*')
+            echo change daemon user to $DELUGED_USER
+        fi
+    fi
+    chown -R $DELUGED_USER ${DELUGED_DIR}/config ${DELUGED_DIR}/plugins
+    printf "$DELUGED_USER" > $USER_FILE
+
+    touch "$INIT_FILE"
+else
+    DELUGED_USER=$(cat $USER_FILE)
 fi
 
-exec "$@"
+export DELUGED_USER=$DELUGED_USER
+/bin/su $DELUGED_USER -s /bin/bash -c "$@"

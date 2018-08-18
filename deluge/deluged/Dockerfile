@@ -1,6 +1,7 @@
 FROM debian:stretch-slim
 
 ENV DELUGED_DIR=/var/lib/deluged
+ENV DELUGED_USER=debian-deluged
 
 ADD build-setup.sh ${DELUGED_DIR}/build-setup.sh
 
@@ -9,11 +10,9 @@ RUN apt-get update \
       && ${DELUGED_DIR}/build-setup.sh \
       && rm -f ${DELUGED_DIR}/build-setup.sh \
       && mkdir -p ${DELUGED_DIR}/Downloads ${DELUGED_DIR}/plugins ${DELUGED_DIR}/config/state \
-      && chown -R debian-deluged:debian-deluged ${DELUGED_DIR} \
       && apt clean \
       && rm -fr /var/lib/apt/lists/*
 
-USER debian-deluged
 WORKDIR /var/lib/deluged
 
 VOLUME ${DELUGED_DIR}/config/state
