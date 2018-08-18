@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  deluged:
+    image: yanzhen0610/deluged:latest
+    environment:
+      - DELUGED_CLIENT_USERNAME=${DELUGED_CLIENT_USERNAME}
+      - DELUGED_CLIENT_PASSWORD=${DELUGED_CLIENT_PASSWORD}
+      - DELUGED_UID=${DELUGED_UID:-1000}
+    volumes:
+      - deluged-state:/var/lib/deluged/config/state
+      - "${LOCAL_DOWNLOADS_DIR}:/var/lib/deluged/Downloads"
+    networks:
+      - deluge
+    ports:
+      - "127.0.0.1:58846:58846"
+
+  deluge-web:
+    image: yanzhen0610/deluge-web:latest
+    environment:
+      - DELUGED_HOST=deluged
+      - DELUGED_PORT=58846
+      - DELUGED_CLIENT_USERNAME=${DELUGED_CLIENT_USERNAME}
+      - DELUGED_CLIENT_PASSWORD=${DELUGED_CLIENT_PASSWORD}
+    networks:
+      - deluge
+    ports:
+      - "0.0.0.0:8112:8112"
+
+networks:
+  deluge:
+
+volumes:
+  deluged-state:
