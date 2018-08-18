@@ -6,10 +6,10 @@ About [deluge](https://deluge-torrent.org/)
 
 # Env Vars
 
-`DELUGED_HOST` remote host
-`DELUGED_PORT` (default: 58846)
-`DELUGED_CLIENT_USERNAME` remote host access username
-`DELUGED_CLIENT_PASSWORD` remote host access passowrd
+ - `DELUGED_HOST` remote host
+ - `DELUGED_PORT` (default: 58846)
+ - `DELUGED_CLIENT_USERNAME` remote host access username
+ - `DELUGED_CLIENT_PASSWORD` remote host access passowrd
 
 # Run
 
