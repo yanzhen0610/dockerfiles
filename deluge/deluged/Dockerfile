@@ -21,5 +21,6 @@ VOLUME ${DELUGED_DIR}/Downloads
 
 EXPOSE 58846
 
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["/bin/sh", "-c", "/usr/bin/deluged -d -c $DELUGED_DIR/config -L ${DELUGED_LOG_LEVEL:-info}"]

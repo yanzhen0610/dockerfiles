@@ -20,9 +20,6 @@ deluge-console --config=${DELUGED_DIR}/config config --set move_completed_path $
 deluge-console --config=${DELUGED_DIR}/config config --set torrentfiles_location ${DELUGED_DIR}/Downloads/torrentfiles
 deluge-console --config=${DELUGED_DIR}/config config --set plugins_location ${DELUGED_DIR}/plugins
 
-# show the settings
-deluge-console --config=${DELUGED_DIR}/config config
-
 # use SIGTERM to stop the daemon in order to save configs
 deluge-console --config=${DELUGED_DIR}/config halt
 # wait until the daemon finished
