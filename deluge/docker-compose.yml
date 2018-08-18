@@ -14,6 +14,7 @@ services:
       - deluge
     ports:
       - "127.0.0.1:58846:58846"
+    restart: always
 
   deluge-web:
     image: yanzhen0610/deluge-web:latest
@@ -26,6 +27,7 @@ services:
       - deluge
     ports:
       - "0.0.0.0:8112:8112"
+    restart: always
 
 networks:
   deluge:
