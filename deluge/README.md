@@ -6,9 +6,9 @@ About [deluge](https://deluge-torrent.org/)
 
 # Env Vars
 
-`DELUGED_CLIENT_USERNAME` and `DELUGED_CLIENT_PASSWORD` are username and password used for communicating between deluged and deluge-web, just pass arbitrary values[a-z0-9] to them
-`LOCAL_DOWNLOADS_DIR` download destination dir
-`DELUGED_UID` the owner of the downloads dir's UID
+ - `DELUGED_CLIENT_USERNAME` and `DELUGED_CLIENT_PASSWORD` are username and password used for communicating between deluged and deluge-web, just pass arbitrary values[a-z0-9] to them
+ - `LOCAL_DOWNLOADS_DIR` download destination dir
+ - `DELUGED_UID` the owner of the downloads dir's UID
 
 # Example
 
