@@ -4,8 +4,8 @@ About [deluge](https://deluge-torrent.org/)
 
 # Env Vars
 
-`DELUGED_CLIENT_USERNAME` new username
-`DELUGED_CLIENT_PASSWORD` password for the new user
+ - `DELUGED_CLIENT_USERNAME` new username
+ - `DELUGED_CLIENT_PASSWORD` password for the new user
 
 > *Note*: both `DELUGED_CLIENT_USERNAME` and `DELUGED_CLIENT_PASSWORD` need to be set or there will be no daemon access user created
 
