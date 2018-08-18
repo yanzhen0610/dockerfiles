@@ -21,6 +21,5 @@ VOLUME ${DELUGED_DIR}/Downloads
 
 EXPOSE 58846
 
-# CMD ["/usr/bin/deluged", "-d", "-c", "/var/lib/deluged/config"]
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
