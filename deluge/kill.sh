@@ -1,0 +1,1 @@
+env DELUGED_CLIENT_USERNAME=f71067l8cjjycy95xlk05gn5j7vsfvvscodfmdj0 DELUGED_CLIENT_PASSWORD=jdfg9kr9h8uibo016jbjx9dox6yyphesymbz15ke LOCAL_DOWNLOADS_DIR=~/Downloads DELUGED_UID=1000 docker-compose kill
