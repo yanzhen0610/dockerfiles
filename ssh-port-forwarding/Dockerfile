@@ -9,7 +9,7 @@ ENV SSH_PORT=22 \
              HOST=host \
              PORT=0
 
-COPY connect /
+COPY start.sh sleep-infinity.sh connect.exp /
 
-CMD ["/connect"]
+CMD ["/start.sh"]
 
