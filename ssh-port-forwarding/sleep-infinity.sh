@@ -2,6 +2,6 @@
 
 while :
 do
-  sleep 1d
+  sleep 18446744073709551615 # max value :(
 done
 
