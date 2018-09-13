@@ -1,7 +1,7 @@
 #!/usr/bin/expect -f
 
-spawn ssh -g -L 6666:localhost:$env(PORT) -N -o "StrictHostKeyChecking no" $env(USER)@$env(HOST) -p $env(SSH_PORT)
+spawn ssh -g -L 6666:localhost:$env(PORT) -N $env(USER)@$env(HOST) -p $env(SSH_PORT) -o StrictHostKeyChecking=no
 expect "assword:"
 send -- "$env(PASSWORD)\r"
-expect eof
+interact
 
