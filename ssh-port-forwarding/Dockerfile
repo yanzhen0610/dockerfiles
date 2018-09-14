@@ -9,7 +9,7 @@ ENV SSH_PORT=22 \
              HOST=host \
              PORT=0 \
              ALIVE_INTERVAL=5 \
-             ALIVE_MAX_COUNT=1
+             ALIVE_COUNT_MAX=2
 
 COPY connect.exp /
 
