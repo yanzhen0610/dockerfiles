@@ -7,9 +7,11 @@ EXPOSE 6666
 ENV SSH_PORT=22 \
              USER=user \
              HOST=host \
-             PORT=0
+             PORT=0 \
+             ALIVE_INTERVAL=5 \
+             ALIVE_MAX_COUNT=1
 
-COPY start.sh sleep-infinity.sh connect.exp /
+COPY connect.exp /
 
-CMD ["/start.sh"]
+CMD ["/connect.exp"]
 

@@ -1,7 +1,11 @@
 #! /usr/bin/expect -f
 
-spawn ssh -g -L 6666:localhost:$env(PORT) -N $env(USER)@$env(HOST) -p $env(SSH_PORT) -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+spawn ssh -g -L 6666:localhost:$env(PORT) -N $env(USER)@$env(HOST) -p $env(SSH_PORT) \
+        -o StrictHostKeyChecking=no \
+        -o UserKnownHostsFile=/dev/null \
+        -o ServerAliveInterval=$env(ALIVE_INTERVAL) \
+        -o ServerAliveCountMax=$env(ALIVE_MAX_COUNT)
 expect "assword:"
 send -- "$env(PASSWORD)\r"
-interact
+wait
 
