@@ -31,10 +31,14 @@ RUN \
         && \
         rm -f /tmp/mysqld.cnf \
         && \
-        cat /etc/nginx/nginx.conf | \
+        mv /etc/nginx/nginx.conf /tmp/nginx.conf \
+        && \
+        cat /tmp/nginx.conf | \
             sed 's/access_log.*\?;/access_log \/dev\/stdout;/' | \
             sed 's/error_log.*\?;/error_log \/dev\/stderr;/' > \
             /etc/nginx/nginx.conf \
+        && \
+        rm /tmp/nginx.conf \
         && \
         cat /etc/nginx/sites-available/default | \
             sed '56,63 {s/^\(\s*\?\)#/\1/}' | \

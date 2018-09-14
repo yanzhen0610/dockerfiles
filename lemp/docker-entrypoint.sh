@@ -13,6 +13,8 @@ then
   /usr/sbin/nginx -g 'daemon on; master_process on;' &
   /usr/sbin/php-fpm7.2 &
 
+  sleep 5
+
   processes='sshd mysqld nginx php-fpm'
 
   while sleep 1; do
