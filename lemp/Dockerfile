@@ -29,7 +29,7 @@ RUN \
             sed 's/^#\?\(log_error\s*=\s*.*\)$/#\1/' > \
             /etc/mysql/mysql.conf.d/mysqld.cnf \
         && \
-        rm -rf /tmp/mysqld.cnf /var/lib/mysql/* \
+        rm -rf /tmp/mysqld.cnf /var/lib/mysql/* /var/lib/mysql-files/* /var/lib/mysql-upgrade \
         && \
         mv /etc/nginx/nginx.conf /tmp/nginx.conf \
         && \
