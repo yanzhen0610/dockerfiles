@@ -4,6 +4,7 @@ spawn ssh -g -L 6666:localhost:$env(PORT) -N $env(USER)@$env(HOST) -p $env(SSH_P
         -o NumberOfPasswordPrompts=2 \
         -o StrictHostKeyChecking=no \
         -o UserKnownHostsFile=/dev/null \
+        -o ConnectTimeout=$env(TIMEOUT) \
         -o ServerAliveInterval=$env(ALIVE_INTERVAL) \
         -o ServerAliveCountMax=$env(ALIVE_COUNT_MAX)
 expect "assword:"
