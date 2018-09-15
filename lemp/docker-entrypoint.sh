@@ -8,6 +8,10 @@ then
     sed -i 's/display_errors = Off/display_errors = On/' /etc/php/7.2/fpm/php.ini
   fi
 
+  if [ ! -d "$(ls -A /var/lib/mysql)" ]; then
+    mysqld --initialize-insecure
+  fi
+
   /usr/sbin/sshd -D &
   /usr/sbin/mysqld &
   /usr/sbin/nginx -g 'daemon on; master_process on;' &
