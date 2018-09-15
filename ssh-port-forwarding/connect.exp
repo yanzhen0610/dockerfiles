@@ -7,5 +7,11 @@ spawn ssh -g -L 6666:localhost:$env(PORT) -N $env(USER)@$env(HOST) -p $env(SSH_P
         -o ServerAliveCountMax=$env(ALIVE_COUNT_MAX)
 expect "assword:"
 send -- "$env(PASSWORD)\r"
+expect {
+  "assword:" {
+    sleep 5
+    exit
+  }
+}
 wait
 
