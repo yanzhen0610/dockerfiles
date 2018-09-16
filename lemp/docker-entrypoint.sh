@@ -12,6 +12,8 @@ then
     mysqld --initialize-insecure
   fi
 
+  rm -fr /var/run/mysqld/*
+
   /usr/sbin/sshd -D &
   /usr/sbin/mysqld &
   /usr/sbin/nginx -g 'daemon on; master_process on;' &
