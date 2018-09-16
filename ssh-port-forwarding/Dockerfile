@@ -12,7 +12,7 @@ ENV SSH_PORT=22 \
              ALIVE_INTERVAL=5 \
              ALIVE_COUNT_MAX=2
 
-COPY connect.exp /
+COPY connect.exp ts.sh /
 
-CMD ["/connect.exp"]
+CMD ["sh", "-c", "/connect.exp | /ts.sh"]
 

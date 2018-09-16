@@ -1,19 +1,31 @@
 #! /usr/bin/expect -f
 
-spawn ssh -g -L 6666:localhost:$env(PORT) -N $env(USER)@$env(HOST) -p $env(SSH_PORT) \
-        -o NumberOfPasswordPrompts=2 \
+set timeout -1
+
+spawn ssh -g -L 6666:localhost:$env(PORT) -N $env(USER)@$env(HOST) -p $env(SSH_PORT) -v \
+        -o NumberOfPasswordPrompts=1 \
         -o StrictHostKeyChecking=no \
         -o UserKnownHostsFile=/dev/null \
         -o ConnectTimeout=$env(TIMEOUT) \
         -o ServerAliveInterval=$env(ALIVE_INTERVAL) \
         -o ServerAliveCountMax=$env(ALIVE_COUNT_MAX)
-expect "assword:"
-send -- "$env(PASSWORD)\r"
+
+match_max 8192
 expect {
   "assword:" {
-    sleep 5
+    send -- "$env(PASSWORD)\r"
+  }
+  full_buffer {
     exit
   }
 }
-wait
+
+expect {
+  full_buffer {
+    exp_continue
+  }
+  eof {
+    exp_continue
+  }
+}
 
