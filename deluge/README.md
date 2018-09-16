@@ -21,6 +21,12 @@ env \
     docker-compose up -d 
 ```
 
-`tr -cd 'a-z0-9' < /dev/urandom | fold -w40 | head -n1` is for generating random characters[a-z0-9]
+or just
+
+```
+./start.sh up -d
+```
+
+> `tr -cd 'a-z0-9' < /dev/urandom | fold -w40 | head -n1` is for generating random characters[a-z0-9]
 
 > **Note:** the `user` at line 5 needs to be change to the owner of `~/Donwloads`
