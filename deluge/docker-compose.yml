@@ -2,7 +2,9 @@ version: "3"
 
 services:
   deluged:
-    image: yanzhen0610/deluged:latest
+    build:
+      context: ./deluged
+    image: deluged
     environment:
       - DELUGED_CLIENT_USERNAME=${DELUGED_CLIENT_USERNAME}
       - DELUGED_CLIENT_PASSWORD=${DELUGED_CLIENT_PASSWORD}
@@ -17,7 +19,9 @@ services:
     restart: always
 
   deluge-web:
-    image: yanzhen0610/deluge-web:latest
+    build:
+      context: ./deluge-web
+    image: deluge-web
     environment:
       - DELUGED_HOST=deluged
       - DELUGED_PORT=58846
