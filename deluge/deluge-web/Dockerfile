@@ -4,7 +4,9 @@ ENV DELUGE_WEB_DIR=/var/lib/deluge-web
 ENV DELUGE_WEB_USER=deluge-web
 
 RUN apt-get update \
-      && apt-get install -y deluge-web \
+      && apt-get install -y deluge-common
+
+RUN apt-get install -y deluge-web \
       && useradd -r -b ${DELUGE_WEB_DIR} -d ${DELUGE_WEB_DIR} ${DELUGE_WEB_USER} \
       && mkdir -p ${DELUGE_WEB_DIR} \
       && chown -R ${DELUGE_WEB_USER}:${DELUGE_WEB_USER} ${DELUGE_WEB_DIR} \

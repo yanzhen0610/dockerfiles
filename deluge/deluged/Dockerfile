@@ -6,7 +6,9 @@ ENV DELUGED_USER=debian-deluged
 ADD build-setup.sh ${DELUGED_DIR}/build-setup.sh
 
 RUN apt-get update \
-      && apt-get install -y deluged deluge-console \
+      && apt-get install -y deluge-common
+      
+RUN apt-get install -y deluged deluge-console \
       && ${DELUGED_DIR}/build-setup.sh \
       && rm -f ${DELUGED_DIR}/build-setup.sh \
       && mkdir -p ${DELUGED_DIR}/Downloads ${DELUGED_DIR}/plugins ${DELUGED_DIR}/config/state \
