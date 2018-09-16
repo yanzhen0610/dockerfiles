@@ -15,7 +15,7 @@ About [deluge](https://deluge-torrent.org/)
 docker run -d -p 58846:58846 -v "/home/$(whoami)/Downloads:/var/lib/deluged/Downloads" yanzhen0610/deluged
 ```
 
-or create a new daemon access user with username `ezample` and passowrd `1234`
+or create a new daemon access user with username `example` and password `1234`
 
 ```
 docker run -d -p 58846:58846 -e DELUGED_CLIENT_USERNAME=example -e DELUGED_CLIENT_PASSWORD=1234 -v "/home/$(whoami)/Downloads:/var/lib/deluged/Downloads" yanzhen0610/deluged
@@ -26,3 +26,4 @@ docker run -d -p 58846:58846 -e DELUGED_CLIENT_USERNAME=example -e DELUGED_CLIEN
 better run with the docker compose file
 
 [docker-compose.yml](https://github.com/yanzhen0610/dockerfiles/tree/master/deluge)
+
