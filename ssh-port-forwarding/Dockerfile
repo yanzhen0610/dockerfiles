@@ -14,5 +14,5 @@ ENV SSH_PORT=22 \
 
 COPY connect.exp ts.sh /
 
-CMD ["sh", "-c", "/connect.exp | /ts.sh"]
+CMD ["sh", "-c", "/connect.exp | grep -Ev 'want_reply' | /ts.sh"]
 
