@@ -49,13 +49,14 @@ RUN \
             sed '56,63 {s/^\(\s*\?\)#/\1/}' | \
             sed 's/php7\.0-fpm/php7.2-fpm/g' | \
             sed '62 s/^\(\s*\?\)/\1# /' | \
-            sed '63 i \\t\tfastcgi_param\tSCRIPT_FILENAME\t$fastcgi_script_name;' | \
-            sed '64 i \\t\tfastcgi_param\tPATH_INFO\t$fastcgi_script_name;' > \
+            sed '63 i \\t\tfastcgi_param\tSCRIPT_FILENAME\t$document_root$fastcgi_script_name;' | \
+            sed '64 i \\t\tfastcgi_param\tPATH_INFO\t$fastcgi_path_info;' > \
             /etc/nginx/sites-available/default-with-php-enabled \
         && \
         rm /etc/nginx/sites-enabled/* \
         && \
-        ln -s /etc/nginx/sites-available/default-with-php-enabled /etc/nginx/sites-enabled/default-with-php-enabled \
+        ln -s /etc/nginx/sites-available/default-with-php-enabled \
+            /etc/nginx/sites-enabled/default-with-php-enabled \
         && \
         echo "export VISIBLE=now" >> /etc/profile \
         && \
@@ -63,18 +64,18 @@ RUN \
         && \
         phpenmod mysqli pdo_mysql \
         && \
-        echo "[www]\nchroot=/var/www/html" > /etc/php/7.2/fpm/pool.d/chroot.conf \
-        && \
         chown www-data:www-data /var/run/php /var/www \
         && \
         chown mysql:mysql /var/run/mysqld
 
 VOLUME /var/lib/mysql
+VOLUME /var/lib/php/sessions
 
 COPY docker-entrypoint.sh /
 
 EXPOSE 22
 EXPOSE 80
+EXPOSE 3306
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
