@@ -35,7 +35,7 @@ then
   PERIOD=30
 elif ! [[ $PERIOD =~ '^[0-9]+$' ]]
 then
-  echo '$PREIOD' should be a positive integer
+  echo '$PERIOD' should be a positive integer
   exit 2
 fi
 
