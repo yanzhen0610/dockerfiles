@@ -12,6 +12,7 @@ RUN set -eux ; \
 	test "${COMPOSER_EXPECTED_CHECKSUM}" != "${COMPOSER_ACTUAL_CHECKSUM}" && { >&2 echo 'ERROR: Invalid installer checksum' ; exit 1 ; } ; \
 	php composer-setup.php ; \
 	rm composer-setup.php ; \
+	cp composer.phar /usr/bin/composer ; \
 	npm install --global npm ; \
 	npm install --global node-linux
 
