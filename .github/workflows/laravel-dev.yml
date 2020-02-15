@@ -16,6 +16,7 @@ jobs:
     - name: Build laravel-dev
       run: |
         image="docker.pkg.github.com/$GITHUB_REPOSITORY/laravel-dev"
-        docker build laravel-dev --file laravel-dev/Dockerfile --tag "$image"
         docker login -u yanzhen -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
+        docker pull "$image"
+        docker build laravel-dev --file laravel-dev/Dockerfile --tag "$image"
         docker push "$image"
