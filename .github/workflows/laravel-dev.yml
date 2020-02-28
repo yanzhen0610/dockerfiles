@@ -10,15 +10,25 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
+    env:
+      IMAGE: docker.pkg.github.com/${{ github.repository }}/laravel-dev
+      DOCKERFILE: laravel-dev/Dockerfile
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build laravel-dev
-      run: |
-        image="docker.pkg.github.com/$GITHUB_REPOSITORY/laravel-dev"
-        dockerfile='laravel-dev/Dockerfile'
-        docker login -u GITHUB_ACTIONS -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
-        for base_image in `cat "$dockerfile" | grep FROM | awk '{ print $2 }` ; do docker pull "$base_image" ; done
-        docker pull "$image"
-        docker build laravel-dev --file "$dockerfile" --tag "$image" --cache-from "$image"
-        docker push "$image"
+      
+    - name: Authenticate
+      run: docker login -u GITHUB_ACTIONS -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
+
+    - name: Pull Dependencies
+      run: for base_image in `cat "$DOCKERFILE" | grep FROM | awk '{ print $2 }'` ; do docker pull "$base_image" ; done
+      
+    - name: Pull Last Built Image
+      run: docker pull "$IMAGE"
+      
+    - name: Build Image
+      run: docker build laravel-dev --file "$DOCKERFILE" --tag "$IMAGE" --cache-from "$IMAGE"
+      
+    - name: Push Image
+      run: docker push "$IMAGE"
