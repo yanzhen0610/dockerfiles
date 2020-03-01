@@ -25,7 +25,7 @@ jobs:
       run: for base_image in `cat "$DOCKERFILE" | grep FROM | awk '{ print $2 }'` ; do docker pull "$base_image" ; done
       
     - name: Pull Last Built Image
-      run: docker pull "$IMAGE"
+      run: docker pull "$IMAGE" || true
       
     - name: Build Image
       run: docker build laravel-dev --file "$DOCKERFILE" --tag "$IMAGE" --cache-from "$IMAGE"
